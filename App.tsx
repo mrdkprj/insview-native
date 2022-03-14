@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { AppRegistry, SafeAreaView, View, Pressable, Alert, Image, FlatList, StyleSheet, Text, StatusBar, TextInput,Dimensions } from "react-native";
+import { AppRegistry, SafeAreaView, View, Pressable, Alert, Image, FlatList, StyleSheet, Text, StatusBar, TextInput,Dimensions,Modal } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {media, mediaResponse, resultMedia, query } from "./src/instagram";
@@ -53,15 +53,25 @@ const App = () => {
     },[getInsImages])
 
     const HomeScreen = ({ navigation, route } : any) => {
+        const [modalVisible, setModalVisible] = useState(false);
 
         const Item = ( { media } : any) => (
-            <Pressable style={styles.galleryItem} onPress={() => navigation.navigate("ImageModal",{uri:media.media_url})}>
+            <Pressable style={styles.galleryItem} onPress={() => setModalVisible(true)}>
                 <Image style={styles.img} source={{uri:media.media_url}}/>
             </Pressable>
         );
 
         return (
             <SafeAreaView style={styles.container}>
+                      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      ><Text>hello</Text></Modal>
                 <FlatList
                     data={images.media}
                     initialNumToRender={10}
