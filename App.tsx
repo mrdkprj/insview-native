@@ -38,20 +38,9 @@ const App = () => {
         }
     },[]);
 
-    const restore = async () => {
-        try{
-            const savedUsername :any = "a";
-            if(savedUsername){
-                setUsername(savedUsername);
-            }
-        }catch(ex){
-
-        }
-    }
-
     const save = async (newUsername : string) => {
         try{
-            setUsername(newUsername);
+            await getInsImages(newUsername);
         }catch(ex : any){
             showAlert(ex.message);
         }
