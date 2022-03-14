@@ -4,7 +4,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "node index.js",
-    "build": "expo build:web",
+    "build": "expo-cli build:web",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
